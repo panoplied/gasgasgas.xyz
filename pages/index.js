@@ -2,6 +2,8 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
+import Gas from '../components/gas';
+
 export default function Home() {
 
   return (
@@ -33,8 +35,10 @@ export default function Home() {
           objectFit="cover"
           objectPosition="center"
         />
+        <h1>⛽</h1>
+        <Gas />
       </main>
 
     </div>
-  )
+  );
 }
