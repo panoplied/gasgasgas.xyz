@@ -11,16 +11,18 @@ function ChainData({ chain }) {
 
   if (gasLoading) return <p>gas loading...</p>
   if (gasError) return <p>failed to load gas</p>
+  if (usdLoading) return <p>usd loading...</p>
+  if (usdError) return <p>failed to load USD value</p>
 
   return (
     <div style={{color: "white"}}>
       <h2>{name}</h2>
       <div style={{lineHeight: "0.75em"}}>
-        <p>⏱️ seconds: {gasData._seconds}</p>
-        <p>🐢 slow: {gasData.data.slow.price}</p>
-        <p>🚗 normal: {gasData.data.normal.price}</p>
-        <p>🚀 fast: {gasData.data.fast.price}</p>
-        <p>💲 USD: {usdData[usdSymbol].usd}</p>
+        <p>⏱️ {gasData._seconds}</p>
+        <p>🐢 {gasData.data.slow.price}</p>
+        <p>🚗 {gasData.data.normal.price}</p>
+        <p>🚀 {gasData.data.fast.price}</p>
+        <p>💲 {usdData[usdSymbol].usd}</p>
       </div>
     </div>
   );
