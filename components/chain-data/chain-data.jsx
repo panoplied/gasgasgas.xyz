@@ -51,10 +51,10 @@ function ChainData({ chain }) {
       <h2>{name}</h2>
       <div style={{lineHeight: "0.75em"}}>
         {/* <p>⏱️ seconds: {seconds}</p> */}
-        <p>🐢 slow: {weiToGwei(priceSlow)}</p>
-        <p>🚗 normal: {weiToGwei(priceNormal)}</p>
-        <p>🚀 fast: {weiToGwei(priceFast)}</p>
-        <p>💲 USD: {usdValue}</p>
+        <p>🐢 {weiToGwei(priceSlow)}</p>
+        <p>🚗 {weiToGwei(priceNormal)}</p>
+        <p>🚀 {weiToGwei(priceFast)}</p>
+        <p>💲 {usdValue}</p>
       </div>
     </div>
   );
