@@ -13,5 +13,6 @@
 }
 
 .backgroundImage {
+  filter: brightness(50%);
   z-index: -1;
 }
