@@ -1,10 +1,11 @@
 import ChainData from '../chain-data';
+import styles from './gas.module.css';
 
 function Gas() {
 
   // Use chains from lib/settings.js as chain props
   return (
-    <>
+    <div className={styles.container}>
       <ChainData chain="eth" />
       <ChainData chain="bsc" />
       <ChainData chain="xdai" />
@@ -18,7 +19,7 @@ function Gas() {
       <ChainData chain="movr" />
       <ChainData chain="cro" />
       <ChainData chain="boba" />
-    </>
+    </div>
   );
 
 }
