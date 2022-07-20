@@ -30,7 +30,7 @@ function ChainData({ chain }) {
 
   // Only destructure and assign when data loaded without errors
   const {
-    _seconds: seconds,
+    // _seconds: seconds,
     data: {
       slow: {
         price: priceSlow
@@ -47,13 +47,15 @@ function ChainData({ chain }) {
   const { [usdSymbol]: { usd: usdValue } } = usdData;
 
   return (
-    <div style={{color: "white"}}>
+    <div style={{color: "white", padding: "0 3em", marginBottom: "1em"}}>
       <h2>{name}</h2>
-      <div style={{lineHeight: "0.75em"}}>
+      <div style={{lineHeight: "0.75em", display: "flex", justifyContent: "space-between"}}>
         {/* <p>⏱️ seconds: {seconds}</p> */}
         <p>🐢 {weiToGwei(priceSlow)}</p>
         <p>🚗 {weiToGwei(priceNormal)}</p>
         <p>🚀 {weiToGwei(priceFast)}</p>
+      </div>
+      <div>
         <p>💲 {usdValue}</p>
       </div>
     </div>
