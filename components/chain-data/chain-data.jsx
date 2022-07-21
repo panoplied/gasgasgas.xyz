@@ -5,7 +5,7 @@ import { ethers } from 'ethers';
 
 function ChainData({ chain }) {
 
-  const { name, usdSymbol } = chains[chain];
+  const { name, usdSymbol, nativeToken } = chains[chain];
 
   const { data: gasData, isLoading: gasLoading, isError: gasError } = useChain(chain);
   const { data: usdData, isLoading: usdLoading, isError: usdError } = usePrice(chain);
@@ -15,32 +15,13 @@ function ChainData({ chain }) {
   if (usdLoading) return <p>USD loading...</p>
   if (usdError) return <p>Failed to load USD value</p>
 
-  // return (
-  //   <div style={{color: "white"}}>
-  //     <h2>{name}</h2>
-  //     <div style={{lineHeight: "0.75em"}}>
-  //       <p>⏱️ {gasData._seconds}</p>
-  //       <p>🐢 {gasData.data.slow.price}</p>
-  //       <p>🚗 {gasData.data.normal.price}</p>
-  //       <p>🚀 {gasData.data.fast.price}</p>
-  //       <p>💲 {usdData[usdSymbol].usd}</p>
-  //     </div>
-  //   </div>
-  // );
-
+  // ASSIGNMENTS
   // Only destructure and assign when data loaded without errors
-  const {
-    // _seconds: seconds,
+  let {
     data: {
-      slow: {
-        price: priceSlow
-      },
-      normal: {
-        price: priceNormal
-      },
-      fast: {
-        price: priceFast,
-      },
+      slow: { price: feeSlow },
+      normal: { price: feeNormal },
+      fast: { price: feeFast }
     }
   } = gasData;
 
@@ -49,22 +30,30 @@ function ChainData({ chain }) {
   return (
     <div style={{color: "white", padding: "0 3em", marginBottom: "1em"}}>
       <h2>{name}</h2>
-      <div style={{lineHeight: "0.75em", display: "flex", justifyContent: "space-between"}}>
-        {/* <p>⏱️ seconds: {seconds}</p> */}
-        <p>🐢 {weiToGwei(priceSlow)}</p>
-        <p>🚗 {weiToGwei(priceNormal)}</p>
-        <p>🚀 {weiToGwei(priceFast)}</p>
-      </div>
       <div>
         <p>💲 {usdValue}</p>
+      </div>
+      <div style={{lineHeight: "0.75em", display: "flex", justifyContent: "space-between"}}>
+        <p>🐢 {weiToGwei(feeSlow)}</p>
+        <p>🚗 {weiToGwei(feeNormal)}</p>
+        <p>🚀 {weiToGwei(feeFast)}</p>
+      </div>
+      <div style={{lineheight: "0.75em"}}>
+        <p>sstore slow {weiToEth(feeSlow * 23000)} {nativeToken}</p>
+        <p>sstore norm {weiToEth(feeNormal * 23000)} {nativeToken}</p>
+        <p>sstore fast {weiToEth(feeFast * 23000)} {nativeToken}</p>
       </div>
     </div>
   );
 
 }
 
-function weiToGwei(price) {
-  return ethers.utils.formatUnits(price, "gwei");
+function weiToGwei(val) {
+  return ethers.utils.formatUnits(val.toString(), "gwei");
+}
+
+function weiToEth(val) {
+  return ethers.utils.formatEther(val.toString());
 }
 
 export default ChainData;
