@@ -27,6 +27,9 @@ function ChainData({ chain }) {
 
   const { [usdSymbol]: { usd: usdValue } } = usdData;
 
+  const [sstoreSlow, sstoreNormal, sstoreFast] = [feeSlow, feeNormal, feeFast].map(f => weiToEth(f * 23000));
+  const [d24kSlow, d24kNormal, d24kFast] = [feeSlow, feeNormal, feeFast].map(f => weiToEth(f * 15360000));
+
   return (
     <div style={{color: "white", padding: "0 3em", marginBottom: "1em"}}>
       <h2>{name}</h2>
@@ -38,10 +41,17 @@ function ChainData({ chain }) {
         <p>🚗 {weiToGwei(feeNormal)}</p>
         <p>🚀 {weiToGwei(feeFast)}</p>
       </div>
-      <div style={{lineheight: "0.75em"}}>
-        <p>sstore slow {weiToEth(feeSlow * 23000)} {nativeToken}</p>
-        <p>sstore norm {weiToEth(feeNormal * 23000)} {nativeToken}</p>
-        <p>sstore fast {weiToEth(feeFast * 23000)} {nativeToken}</p>
+      <div>
+        <p style={{fontWeight: "bold"}}>SSTORE</p>
+        <p>slow {sstoreSlow} {nativeToken} ${sstoreSlow * usdValue} </p>
+        <p>norm {sstoreNormal} {nativeToken} ${sstoreNormal * usdValue}</p>
+        <p>fast {sstoreFast} {nativeToken} ${sstoreFast * usdValue}</p>
+      </div>
+      <div>
+        <p style={{fontWeight: "bold"}}>DEPLOY 24k</p>
+        <p>slow {d24kSlow} {nativeToken} ${d24kSlow * usdValue}</p>
+        <p>norm {d24kNormal} {nativeToken} ${d24kNormal * usdValue}</p>
+        <p>fast {d24kFast} {nativeToken} ${d24kFast * usdValue}</p>
       </div>
     </div>
   );
