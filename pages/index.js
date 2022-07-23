@@ -6,7 +6,7 @@ import ChainsGrid from '../components/chains-grid';
 export default function Home() {
 
   return (
-    <div className="bg-black">
+    <div className="bg-zinc-50">
 
       <Head>
         <title>GAS GAS GAS</title>

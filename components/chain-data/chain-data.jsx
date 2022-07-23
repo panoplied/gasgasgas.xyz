@@ -36,13 +36,13 @@ function ChainData({ chain }) {
   const [d24kSlow, d24kNormal, d24kFast] = [feeSlow, feeNormal, feeFast].map(f => weiToEth(f * 15360000));
 
   return (
-    <div className="grid text-white bg-gray-800 rounded border-2 border-gray-800">
+    <div className="grid text-zinc-900 bg-zinc-100 rounded-lg border-2 border-zinc-200">
 
       {/* Block Header */}
-      <div>
+      <div className="bg-zinc-50 rounded-t-lg">
 
         {/* Chain Title */}
-        <div className="flex flex-nowrap h-16 bg-gray-900 p-4 rounded-t">
+        <div className="flex flex-nowrap h-16 p-4">
           <div className="h-[32px] w-[32px] relative mr-4">
             <Image
               src={`/images/logo/${chain}.png`}
@@ -56,10 +56,10 @@ function ChainData({ chain }) {
         </div>
 
         {/* Gas Values */}
-        <div className="flex flex-nowrap p-4 text-2xl font-robotoMonoLight bg-gray-900 rounded-b">
-          <p className="grow text-cyan-400 text-left">{speedMarks.slow} {weiToGwei(feeSlow)}</p>
-          <p className="grow text-green-400 text-center">{speedMarks.normal} {weiToGwei(feeNormal)}</p>
-          <p className="grow text-red-400 text-right">{speedMarks.fast} {weiToGwei(feeFast)}</p>
+        <div className="flex flex-nowrap font-bold p-4 text-2xl font-robotoMonoLight">
+          <p className="grow text-sky-500 text-left">{speedMarks.slow} {weiToGwei(feeSlow)}</p>
+          <p className="grow text-green-500 text-center">{speedMarks.normal} {weiToGwei(feeNormal)}</p>
+          <p className="grow text-rose-500 text-right">{speedMarks.fast} {weiToGwei(feeFast)}</p>
         </div>
 
       </div>
