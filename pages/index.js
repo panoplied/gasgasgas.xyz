@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import ThemeToggle from '../components/theme-toggle';
+import Header from '../components/header';
 
 import ChainsGrid from '../components/chains-grid';
 
@@ -26,7 +28,7 @@ export default function Home() {
       </Head>
 
       <main className="grid place-items-center min-h-screen">
-        <h1 className="text-5xl p-12">⛽</h1>
+        <Header />
         <ChainsGrid />
         {/* TODO Adjust image placement */}
         {/* <Image
