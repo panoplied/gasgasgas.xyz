@@ -53,10 +53,10 @@ function ChainData({ chain }) {
       </div>
 
       {/* Gas Values */}
-      <div className="flex flex-nowrap p-4">
-        <p className="font-extrabold grow text-cyan-400">{speedMarks.slow} {weiToGwei(feeSlow)}</p>
-        <p className="font-extrabold grow text-green-400">{speedMarks.normal} {weiToGwei(feeNormal)}</p>
-        <p className="font-extrabold grow text-red-400">{speedMarks.fast} {weiToGwei(feeFast)}</p>
+      <div className="flex flex-nowrap p-4 text-2xl">
+        <p className="grow text-cyan-400 text-left">{speedMarks.slow} {weiToGwei(feeSlow)}</p>
+        <p className="grow text-green-400 text-center">{speedMarks.normal} {weiToGwei(feeNormal)}</p>
+        <p className="grow text-red-400 text-right">{speedMarks.fast} {weiToGwei(feeFast)}</p>
       </div>
 
       {/* Transaction Costs */}
