@@ -9,8 +9,9 @@ function TxFee({ speed, fee, token, usdValue }) {
   // }
 
   return (
-    <div>
-      <p className="font-novaMono">{speedMarks[speed]} {truncate(fee)} {token} ${truncate(fee * usdValue)}</p>
+    <div className="flex flex-nowrap font-novaMono py-1">
+      <p className="grow">{speedMarks[speed]} {truncate(fee)} {token}</p>
+      <p>${truncate(fee * usdValue)}</p>
     </div>
   );
 

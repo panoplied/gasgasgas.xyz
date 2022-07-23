@@ -53,7 +53,7 @@ function ChainData({ chain }) {
       </div>
 
       {/* Gas Values */}
-      <div className="flex flex-nowrap p-4 text-2xl font-novaMono">
+      <div className="flex flex-nowrap p-4 text-2xl font-novaMono bg-gray-800">
         <p className="grow text-cyan-400 text-left">{speedMarks.slow} {weiToGwei(feeSlow)}</p>
         <p className="grow text-green-400 text-center">{speedMarks.normal} {weiToGwei(feeNormal)}</p>
         <p className="grow text-red-400 text-right">{speedMarks.fast} {weiToGwei(feeFast)}</p>
@@ -61,14 +61,14 @@ function ChainData({ chain }) {
 
       {/* Transaction Costs */}
       <div className="p-4">
-        <p className="font-bold">Standard Transfer</p>
+        <p className="font-bold py-1">Standard Transfer</p>
         <TxFee speed="slow"   fee={transferSlow}   token={token} usdValue={usdValue}/>
         <TxFee speed="normal" fee={transferNormal} token={token} usdValue={usdValue} />
         <TxFee speed="fast"   fee={transferFast}   token={token} usdValue={usdValue} />
       </div>
 
       {/* 24kb Deployment Costs */}
-      <div className="p-4">
+      <div className="p-4 py-1">
         <p className="font-bold">Deploy 24kb</p>
         <TxFee speed="slow"   fee={d24kSlow}   token={token} usdValue={usdValue} />
         <TxFee speed="normal" fee={d24kNormal} token={token} usdValue={usdValue} />
