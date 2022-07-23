@@ -36,10 +36,21 @@ function ChainData({ chain }) {
   const [d24kSlow, d24kNormal, d24kFast] = [feeSlow, feeNormal, feeFast].map(f => weiToEth(f * 15360000));
 
   return (
-    <div className="grid text-zinc-900 bg-zinc-100 rounded-lg border-2 border-zinc-200">
+    <div className="
+      grid rounded-lg border-2 
+      text-zinc-900 
+      bg-zinc-100 
+      border-zinc-200 
+      dark:text-zinc-50 
+      dark:bg-zinc-800 
+      dark:border-zinc-700
+    ">
 
       {/* Block Header */}
-      <div className="bg-zinc-50 rounded-t-lg">
+      <div className="
+        rounded-t-lg
+        bg-zinc-50
+        dark:bg-zinc-900">
 
         {/* Chain Title */}
         <div className="flex flex-nowrap h-16 p-4">

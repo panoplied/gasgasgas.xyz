@@ -27,7 +27,7 @@ export default function Home() {
         <meta name="twitter:image" content="/images/og.png" />
       </Head>
 
-      <main className="grid place-items-center min-h-screen">
+      <main className="grid place-items-center min-h-screen bg-zinc-50 dark:bg-zinc-900">
         <Header />
         <ChainsGrid />
         {/* TODO Adjust image placement */}
