@@ -28,7 +28,7 @@ function ChainData({ chain }) {
 
   const { [usdSymbol]: { usd: usdValue } } = usdData;
 
-  const [sstoreSlow, sstoreNormal, sstoreFast] = [feeSlow, feeNormal, feeFast].map(f => weiToEth(f * 23000));
+  const [transferSlow, transferNormal, transferFast] = [feeSlow, feeNormal, feeFast].map(f => weiToEth(f * 21000));
   const [d24kSlow, d24kNormal, d24kFast] = [feeSlow, feeNormal, feeFast].map(f => weiToEth(f * 15360000));
 
   return (
@@ -57,15 +57,15 @@ function ChainData({ chain }) {
 
       {/* Transaction Costs */}
       <div className="p-4">
-        <p className="font-bold">SSTORE</p>
-        <p>🐢 {sstoreSlow} {nativeToken} ${sstoreSlow * usdValue} </p>
-        <p>🚗 {sstoreNormal} {nativeToken} ${sstoreNormal * usdValue}</p>
-        <p>🚀 {sstoreFast} {nativeToken} ${sstoreFast * usdValue}</p>
+        <p className="font-bold">Standard Transfer</p>
+        <p>🐢 {transferSlow} {nativeToken} ${transferSlow * usdValue} </p>
+        <p>🚗 {transferNormal} {nativeToken} ${transferNormal * usdValue}</p>
+        <p>🚀 {transferFast} {nativeToken} ${transferFast * usdValue}</p>
       </div>
 
       {/* 1kb Deployment Costs */}
       <div className="p-4">
-        <p className="font-bold">DEPLOY 24k</p>
+        <p className="font-bold">Deploy 24kb</p>
         <p>🐢 {d24kSlow} {nativeToken} ${d24kSlow * usdValue}</p>
         <p>🚗 {d24kNormal} {nativeToken} ${d24kNormal * usdValue}</p>
         <p>🚀 {d24kFast} {nativeToken} ${d24kFast * usdValue}</p>
