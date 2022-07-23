@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 
-import Gas from '../components/gas';
+import ChainsGrid from '../components/chains-grid';
 
 export default function Home() {
 
@@ -27,7 +27,7 @@ export default function Home() {
 
       <main className="grid place-items-center min-h-screen">
         <h1 className="text-5xl p-12">⛽</h1>
-        <Gas />
+        <ChainsGrid />
         {/* TODO Adjust image placement */}
         {/* <Image
           src="/images/bg.jpg"

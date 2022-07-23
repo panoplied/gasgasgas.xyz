@@ -1,6 +1,6 @@
 import ChainData from '../chain-data';
 
-function Gas() {
+function ChainsGrid() {
 
   // Use chains from lib/settings.js as chain props
   return (
@@ -23,4 +23,4 @@ function Gas() {
 
 }
 
-export default Gas;
+export default ChainsGrid;
