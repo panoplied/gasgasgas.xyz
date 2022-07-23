@@ -1,7 +1,8 @@
+import { ethers } from 'ethers';
+import Image from 'next/image';
 import { useChain } from '../../lib/gas-fetcher';
 import { usePrice } from '../../lib/usd-fetcher';
 import { chains } from '../../lib/settings';
-import { ethers } from 'ethers';
 
 function ChainData({ chain }) {
 
@@ -31,28 +32,53 @@ function ChainData({ chain }) {
   const [d24kSlow, d24kNormal, d24kFast] = [feeSlow, feeNormal, feeFast].map(f => weiToEth(f * 15360000));
 
   return (
-    <div style={{color: "white", padding: "0 3em", marginBottom: "1em"}}>
-      <h2>{name}</h2>
-      <div>
-        <p>💲 {usdValue}</p>
+    <div className="grid text-white bg-gray-900">
+
+      {/* Chain Title */}
+      <div className="flex flex-nowrap h-16 bg-gray-800 p-4">
+        <div className="h-[32px] w-[32px] relative mr-4">
+          <Image
+            src={`/images/logo/${chain}.png`}
+            alt={`${name} logo`}
+            layout="fill"
+            objectFit="cover"
+          />
+        </div>
+        <h2 className="flex-auto text-2xl self-baseline font-bold">{name}</h2>
+        <p className="self-baseline">💲 {usdValue}</p>
       </div>
-      <div style={{lineHeight: "0.75em", display: "flex", justifyContent: "space-between"}}>
-        <p>🐢 {weiToGwei(feeSlow)}</p>
-        <p>🚗 {weiToGwei(feeNormal)}</p>
-        <p>🚀 {weiToGwei(feeFast)}</p>
+
+      {/* Gas Values */}
+      <div className="flex flex-nowrap p-4">
+        <p className="font-extrabold grow text-cyan-400">🐢 {weiToGwei(feeSlow)}</p>
+        <p className="font-extrabold grow text-green-400">🚗 {weiToGwei(feeNormal)}</p>
+        <p className="font-extrabold grow text-red-400">🚀 {weiToGwei(feeFast)}</p>
       </div>
-      <div>
-        <p style={{fontWeight: "bold"}}>SSTORE</p>
-        <p>slow {sstoreSlow} {nativeToken} ${sstoreSlow * usdValue} </p>
-        <p>norm {sstoreNormal} {nativeToken} ${sstoreNormal * usdValue}</p>
-        <p>fast {sstoreFast} {nativeToken} ${sstoreFast * usdValue}</p>
+
+      {/* Transaction Costs */}
+      <div className="p-4">
+        <p className="font-bold">SSTORE</p>
+        <p>🐢 {sstoreSlow} {nativeToken} ${sstoreSlow * usdValue} </p>
+        <p>🚗 {sstoreNormal} {nativeToken} ${sstoreNormal * usdValue}</p>
+        <p>🚀 {sstoreFast} {nativeToken} ${sstoreFast * usdValue}</p>
       </div>
-      <div>
-        <p style={{fontWeight: "bold"}}>DEPLOY 24k</p>
-        <p>slow {d24kSlow} {nativeToken} ${d24kSlow * usdValue}</p>
-        <p>norm {d24kNormal} {nativeToken} ${d24kNormal * usdValue}</p>
-        <p>fast {d24kFast} {nativeToken} ${d24kFast * usdValue}</p>
+
+      {/* 1kb Deployment Costs */}
+      <div className="p-4">
+        <p className="font-bold">DEPLOY 24k</p>
+        <p>🐢 {d24kSlow} {nativeToken} ${d24kSlow * usdValue}</p>
+        <p>🚗 {d24kNormal} {nativeToken} ${d24kNormal * usdValue}</p>
+        <p>🚀 {d24kFast} {nativeToken} ${d24kFast * usdValue}</p>
       </div>
+
+      {/* Custom Gas Limit Costs */}
+      {/* TODO: Implement custom gas limit calculation */}
+      {/* <div className="p-4">
+        <p className="font-bold">CUSTOM GAS LIMIT</p>
+        <p>🐢 -- / --</p>
+        <p>🚗 -- / --</p>
+        <p>🚀 -- / --</p>
+      </div> */}
     </div>
   );
 
