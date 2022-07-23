@@ -19,7 +19,7 @@ function TxFee({ speed, fee, token, usdValue }) {
 
 // TODO make proper truncation mechanism
 function truncate(value) {
-  return String(Math.round(value * 1e8) / 1e8).padEnd(12, '0');
+  return String(Math.round(value * 1e8) / 1e8).padEnd(10, '0');
 }
 
 export default TxFee;
