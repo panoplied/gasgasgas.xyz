@@ -1,5 +1,5 @@
-import Head from 'next/head'
-import Image from 'next/image'
+import Head from 'next/head';
+import Image from 'next/image';
 
 import Gas from '../components/gas';
 
@@ -26,7 +26,7 @@ export default function Home() {
       </Head>
 
       <main className="grid place-items-center min-h-screen">
-        <h1 className="text-3xl p-4">⛽</h1>
+        <h1 className="text-5xl p-12">⛽</h1>
         <Gas />
         {/* TODO Adjust image placement */}
         {/* <Image
