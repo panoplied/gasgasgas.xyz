@@ -36,10 +36,10 @@ function ChainData({ chain }) {
   const [d24kSlow, d24kNormal, d24kFast] = [feeSlow, feeNormal, feeFast].map(f => weiToEth(f * 15360000));
 
   return (
-    <div className="grid text-white bg-gray-800">
+    <div className="grid text-white bg-gray-800 rounded">
 
       {/* Chain Title */}
-      <div className="flex flex-nowrap h-16 bg-gray-900 p-4">
+      <div className="flex flex-nowrap h-16 bg-gray-900 p-4 rounded-t">
         <div className="h-[32px] w-[32px] relative mr-4">
           <Image
             src={`/images/logo/${chain}.png`}
