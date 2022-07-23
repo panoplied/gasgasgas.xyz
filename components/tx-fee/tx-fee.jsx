@@ -10,10 +10,15 @@ function TxFee({ speed, fee, token, usdValue }) {
 
   return (
     <div>
-      <p>{speedMarks[speed]} {fee} {token} ${fee * usdValue}</p>
+      <p className="font-novaMono">{speedMarks[speed]} {truncate(fee)} {token} ${truncate(fee * usdValue)}</p>
     </div>
   );
 
+}
+
+// TODO make proper truncation mechanism
+function truncate(value) {
+  return String(Math.round(value * 1e8) / 1e8).padEnd(12, '0');
 }
 
 export default TxFee;
