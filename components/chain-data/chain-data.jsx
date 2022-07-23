@@ -63,7 +63,7 @@ function ChainData({ chain }) {
             />
           </div>
           <h2 className="flex-auto text-2xl self-baseline font-bold font-robotoMonoLight">{name}</h2>
-          <p className="self-baseline font-robotoMonoRegular">$ {usdValue}</p>
+          <p className="self-baseline font-robotoMonoRegular">${usdValue}</p>
         </div>
 
         {/* Gas Values */}
