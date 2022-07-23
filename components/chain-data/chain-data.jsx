@@ -36,29 +36,34 @@ function ChainData({ chain }) {
   const [d24kSlow, d24kNormal, d24kFast] = [feeSlow, feeNormal, feeFast].map(f => weiToEth(f * 15360000));
 
   return (
-    <div className="grid text-white bg-gray-800 rounded">
+    <div className="grid text-white bg-gray-800 rounded border-2 border-gray-800">
 
-      {/* Chain Title */}
-      <div className="flex flex-nowrap h-16 bg-gray-900 p-4 rounded-t">
-        <div className="h-[32px] w-[32px] relative mr-4">
-          <Image
-            src={`/images/logo/${chain}.png`}
-            alt={`${name} logo`}
-            layout="fill"
-            objectFit="cover"
-          />
+      {/* Block Header */}
+      <div>
+
+        {/* Chain Title */}
+        <div className="flex flex-nowrap h-16 bg-gray-900 p-4 rounded-t">
+          <div className="h-[32px] w-[32px] relative mr-4">
+            <Image
+              src={`/images/logo/${chain}.png`}
+              alt={`${name} logo`}
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
+          <h2 className="flex-auto text-2xl self-baseline font-bold font-robotoMonoLight">{name}</h2>
+          <p className="self-baseline font-robotoMonoRegular">$ {usdValue}</p>
         </div>
-        <h2 className="flex-auto text-2xl self-baseline font-bold font-robotoMonoLight">{name}</h2>
-        <p className="self-baseline font-robotoMonoRegular">$ {usdValue}</p>
-      </div>
 
-      {/* Gas Values */}
-      <div className="flex flex-nowrap p-4 text-2xl font-robotoMonoLight bg-gray-900">
-        <p className="grow text-cyan-400 text-left">{speedMarks.slow} {weiToGwei(feeSlow)}</p>
-        <p className="grow text-green-400 text-center">{speedMarks.normal} {weiToGwei(feeNormal)}</p>
-        <p className="grow text-red-400 text-right">{speedMarks.fast} {weiToGwei(feeFast)}</p>
-      </div>
+        {/* Gas Values */}
+        <div className="flex flex-nowrap p-4 text-2xl font-robotoMonoLight bg-gray-900 rounded-b">
+          <p className="grow text-cyan-400 text-left">{speedMarks.slow} {weiToGwei(feeSlow)}</p>
+          <p className="grow text-green-400 text-center">{speedMarks.normal} {weiToGwei(feeNormal)}</p>
+          <p className="grow text-red-400 text-right">{speedMarks.fast} {weiToGwei(feeFast)}</p>
+        </div>
 
+      </div>
+      
       {/* Transaction Costs */}
       <div className="p-4">
         <p className="font-bold font-robotoMonoLight py-1">Standard Transfer</p>
