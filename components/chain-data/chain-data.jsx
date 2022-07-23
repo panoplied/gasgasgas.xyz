@@ -1,12 +1,16 @@
 import { ethers } from 'ethers';
+
 import Image from 'next/image';
+import TxFee from '../tx-fee';
+
 import { useChain } from '../../lib/gas-fetcher';
 import { usePrice } from '../../lib/usd-fetcher';
-import { chains } from '../../lib/settings';
+import { chains, speedMarks } from '../../lib/settings';
+
 
 function ChainData({ chain }) {
 
-  const { name, usdSymbol, nativeToken } = chains[chain];
+  const { name, usdSymbol, nativeToken: token } = chains[chain];
 
   const { data: gasData, isLoading: gasLoading, isError: gasError } = useChain(chain);
   const { data: usdData, isLoading: usdLoading, isError: usdError } = usePrice(chain);
@@ -50,25 +54,25 @@ function ChainData({ chain }) {
 
       {/* Gas Values */}
       <div className="flex flex-nowrap p-4">
-        <p className="font-extrabold grow text-cyan-400">🐢 {weiToGwei(feeSlow)}</p>
-        <p className="font-extrabold grow text-green-400">🚗 {weiToGwei(feeNormal)}</p>
-        <p className="font-extrabold grow text-red-400">🚀 {weiToGwei(feeFast)}</p>
+        <p className="font-extrabold grow text-cyan-400">{speedMarks.slow} {weiToGwei(feeSlow)}</p>
+        <p className="font-extrabold grow text-green-400">{speedMarks.normal} {weiToGwei(feeNormal)}</p>
+        <p className="font-extrabold grow text-red-400">{speedMarks.fast} {weiToGwei(feeFast)}</p>
       </div>
 
       {/* Transaction Costs */}
       <div className="p-4">
         <p className="font-bold">Standard Transfer</p>
-        <p>🐢 {transferSlow} {nativeToken} ${transferSlow * usdValue} </p>
-        <p>🚗 {transferNormal} {nativeToken} ${transferNormal * usdValue}</p>
-        <p>🚀 {transferFast} {nativeToken} ${transferFast * usdValue}</p>
+        <TxFee speed="slow"   fee={transferSlow}   token={token} usdValue={usdValue}/>
+        <TxFee speed="normal" fee={transferNormal} token={token} usdValue={usdValue} />
+        <TxFee speed="fast"   fee={transferFast}   token={token} usdValue={usdValue} />
       </div>
 
-      {/* 1kb Deployment Costs */}
+      {/* 24kb Deployment Costs */}
       <div className="p-4">
         <p className="font-bold">Deploy 24kb</p>
-        <p>🐢 {d24kSlow} {nativeToken} ${d24kSlow * usdValue}</p>
-        <p>🚗 {d24kNormal} {nativeToken} ${d24kNormal * usdValue}</p>
-        <p>🚀 {d24kFast} {nativeToken} ${d24kFast * usdValue}</p>
+        <TxFee speed="slow"   fee={d24kSlow}   token={token} usdValue={usdValue} />
+        <TxFee speed="normal" fee={d24kNormal} token={token} usdValue={usdValue} />
+        <TxFee speed="fast"   fee={d24kFast}   token={token} usdValue={usdValue} />
       </div>
 
       {/* Custom Gas Limit Costs */}
