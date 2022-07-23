@@ -4,7 +4,7 @@ function Gas() {
 
   // Use chains from lib/settings.js as chain props
   return (
-    <div className="p-4 max-w-5xl grid gap-4 xs:grid-cols-2">
+    <div className="p-4 max-w-5xl grid gap-4 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 min-w-[80%]">
       <ChainData chain="eth" />
       <ChainData chain="bsc" />
       <ChainData chain="xdai" />
