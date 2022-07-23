@@ -11,7 +11,13 @@ module.exports = {
       md: "1280px",
       lg: "1920px",
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        majorMonoDisplay: ['Major Mono Display'],
+        shareTechMono: ['Share Tech Mono'],
+        novaMono: ['Nova Mono'],
+      },
+    },
   },
   plugins: [],
 }

@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Major Mono Display";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url("/fonts/MajorMonoDisplay-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Share Tech Mono";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url("/fonts/ShareTechMono-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Nova Mono";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url("/fonts/NovaMono-Regular.ttf") format("truetype");
+}

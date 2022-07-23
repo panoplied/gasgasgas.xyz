@@ -49,11 +49,11 @@ function ChainData({ chain }) {
           />
         </div>
         <h2 className="flex-auto text-2xl self-baseline font-bold">{name}</h2>
-        <p className="self-baseline">💲 {usdValue}</p>
+        <p className="self-baseline font-novaMono">$ {usdValue}</p>
       </div>
 
       {/* Gas Values */}
-      <div className="flex flex-nowrap p-4 text-2xl">
+      <div className="flex flex-nowrap p-4 text-2xl font-novaMono">
         <p className="grow text-cyan-400 text-left">{speedMarks.slow} {weiToGwei(feeSlow)}</p>
         <p className="grow text-green-400 text-center">{speedMarks.normal} {weiToGwei(feeNormal)}</p>
         <p className="grow text-red-400 text-right">{speedMarks.fast} {weiToGwei(feeFast)}</p>
