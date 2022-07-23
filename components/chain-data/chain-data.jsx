@@ -36,10 +36,10 @@ function ChainData({ chain }) {
   const [d24kSlow, d24kNormal, d24kFast] = [feeSlow, feeNormal, feeFast].map(f => weiToEth(f * 15360000));
 
   return (
-    <div className="grid text-white bg-gray-900">
+    <div className="grid text-white bg-gray-800">
 
       {/* Chain Title */}
-      <div className="flex flex-nowrap h-16 bg-gray-800 p-4">
+      <div className="flex flex-nowrap h-16 bg-gray-900 p-4">
         <div className="h-[32px] w-[32px] relative mr-4">
           <Image
             src={`/images/logo/${chain}.png`}
@@ -53,7 +53,7 @@ function ChainData({ chain }) {
       </div>
 
       {/* Gas Values */}
-      <div className="flex flex-nowrap p-4 text-2xl font-novaMono bg-gray-800">
+      <div className="flex flex-nowrap p-4 text-2xl font-novaMono bg-gray-900">
         <p className="grow text-cyan-400 text-left">{speedMarks.slow} {weiToGwei(feeSlow)}</p>
         <p className="grow text-green-400 text-center">{speedMarks.normal} {weiToGwei(feeNormal)}</p>
         <p className="grow text-red-400 text-right">{speedMarks.fast} {weiToGwei(feeFast)}</p>
