@@ -48,12 +48,12 @@ function ChainData({ chain }) {
             objectFit="cover"
           />
         </div>
-        <h2 className="flex-auto text-2xl self-baseline font-bold">{name}</h2>
-        <p className="self-baseline font-novaMono">$ {usdValue}</p>
+        <h2 className="flex-auto text-2xl self-baseline font-bold font-robotoMonoLight">{name}</h2>
+        <p className="self-baseline font-robotoMonoRegular">$ {usdValue}</p>
       </div>
 
       {/* Gas Values */}
-      <div className="flex flex-nowrap p-4 text-2xl font-novaMono bg-gray-900">
+      <div className="flex flex-nowrap p-4 text-2xl font-robotoMonoLight bg-gray-900">
         <p className="grow text-cyan-400 text-left">{speedMarks.slow} {weiToGwei(feeSlow)}</p>
         <p className="grow text-green-400 text-center">{speedMarks.normal} {weiToGwei(feeNormal)}</p>
         <p className="grow text-red-400 text-right">{speedMarks.fast} {weiToGwei(feeFast)}</p>
@@ -61,15 +61,15 @@ function ChainData({ chain }) {
 
       {/* Transaction Costs */}
       <div className="p-4">
-        <p className="font-bold py-1">Standard Transfer</p>
+        <p className="font-bold font-robotoMonoLight py-1">Standard Transfer</p>
         <TxFee speed="slow"   fee={transferSlow}   token={token} usdValue={usdValue}/>
         <TxFee speed="normal" fee={transferNormal} token={token} usdValue={usdValue} />
         <TxFee speed="fast"   fee={transferFast}   token={token} usdValue={usdValue} />
       </div>
 
       {/* 24kb Deployment Costs */}
-      <div className="p-4 py-1">
-        <p className="font-bold">Deploy 24kb</p>
+      <div className="p-4">
+        <p className="font-bold font-robotoMonoLight py-1">Deploy 24kb</p>
         <TxFee speed="slow"   fee={d24kSlow}   token={token} usdValue={usdValue} />
         <TxFee speed="normal" fee={d24kNormal} token={token} usdValue={usdValue} />
         <TxFee speed="fast"   fee={d24kFast}   token={token} usdValue={usdValue} />

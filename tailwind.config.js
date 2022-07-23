@@ -16,6 +16,8 @@ module.exports = {
         majorMonoDisplay: ['Major Mono Display'],
         shareTechMono: ['Share Tech Mono'],
         novaMono: ['Nova Mono'],
+        robotoMonoRegular: ['Roboto Mono Regular'],
+        robotoMonoLight: ['Roboto Mono Light'],
       },
     },
   },
