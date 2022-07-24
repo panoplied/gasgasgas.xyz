@@ -1,29 +1,39 @@
 import { useTheme } from 'next-themes';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function ThemeToggle() {
 
-  const { theme, setTheme } = useTheme();
-  const [effect, setEffect] = useState(false);
+  const { systemTheme, theme, setTheme } = useTheme();
+  const [ isAnimating, setIsAnimating] = useState(false);
+
+  const currentTheme = theme === "system" ? systemTheme : theme;
+
+  const [ mounted, setMounted ] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   return (
 
     <span
       className={`
         text-4xl
+        select-none
         cursor-pointer
-        ${effect && "animate-[wiggle_200ms_ease-in-out]"}
+        ${isAnimating && "animate-[wiggle_200ms_ease-in-out]"}
       `}
       onClick={() => {
-        setEffect(true);
+        setIsAnimating(true);
         setTheme(theme === 'dark' ? 'light' : 'dark');
       }}
       onAnimationEnd={() => {
-        setEffect(false);
+        setIsAnimating(false);
       }}
     >
 
-      {theme === 'dark' ? '🌞' : '🌚' }
+      {currentTheme === 'dark' ? '🌞' : '🌚' }
 
     </span>
 
