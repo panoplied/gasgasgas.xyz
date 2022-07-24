@@ -37,20 +37,19 @@ function ChainData({ chain }) {
 
   return (
     <div className="
-      grid rounded-lg border-2 
+      grid
+      rounded-lg
       text-zinc-900 
-      bg-zinc-100 
-      border-zinc-200 
       dark:text-zinc-50 
-      dark:bg-zinc-800 
-      dark:border-zinc-700
+
+      bg-zinc-50/70 
+      dark:bg-zinc-900/70 
+
+      backdrop-blur-md
     ">
 
       {/* Block Header */}
-      <div className="
-        rounded-t-lg
-        bg-zinc-50
-        dark:bg-zinc-900">
+      <div> 
 
         {/* Chain Title */}
         <div className="flex flex-nowrap h-16 p-4">
