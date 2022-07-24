@@ -1,14 +1,13 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import ThemeToggle from '../components/theme-toggle';
 import Header from '../components/header';
+import BackgroundImage from '../components/background-image';
 
 import ChainsGrid from '../components/chains-grid';
 
 export default function Home() {
 
   return (
-    <div className="bg-zinc-50">
+    <>
 
       <Head>
         <title>GAS GAS GAS</title>
@@ -27,19 +26,13 @@ export default function Home() {
         <meta name="twitter:image" content="/images/og.png" />
       </Head>
 
-      <main className="grid place-items-center min-h-screen bg-zinc-50 dark:bg-zinc-900">
+      <BackgroundImage />
+
+      <main className="grid place-items-center min-h-screen bg-zinc-50/50 dark:bg-zinc-900/50">
         <Header />
         <ChainsGrid />
-        {/* TODO Adjust image placement */}
-        {/* <Image
-          src="/images/bg.jpg"
-          alt=""
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center"
-        /> */}
       </main>
 
-    </div>
+    </>
   );
 }
