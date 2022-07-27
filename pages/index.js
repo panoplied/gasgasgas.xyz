@@ -3,8 +3,9 @@ import Header from '../components/header';
 import BackgroundImage from '../components/background-image';
 
 import ChainsGrid from '../components/chains-grid';
+import { chains, speedMarks } from '../lib/settings';
 
-export default function Home() {
+export function Home({ chains, speedMarks}) {
 
   return (
     <>
@@ -24,15 +25,29 @@ export default function Home() {
         <meta name="twitter:title" content="GAS GAS GAS" />
         <meta name="twitter:description" content="⛽🚘 EVM chains gas tools" />
         <meta name="twitter:image" content="/images/og.png" />
+
+        <link rel="preload" href="/fonts/RobotoMono-Regular.ttf" as="font" crossOrigin="" type="font/ttf" />
+        <link rel="preload" href="/fonts/RobotoMono-Light.ttf" as="font" crossOrigin="" type="font/ttf" />
       </Head>
 
       <BackgroundImage />
 
       <main className="grid place-items-center min-h-screen bg-zinc-50/50 dark:bg-zinc-900/50">
         <Header />
-        <ChainsGrid />
+        <ChainsGrid chains={chains} speedMarks={speedMarks} />
       </main>
 
     </>
   );
 }
+
+export async function getStaticProps() {
+  return {
+    props: {
+      chains,
+      speedMarks,
+    },
+  };
+}
+
+export default Home;
