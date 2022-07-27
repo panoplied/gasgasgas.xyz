@@ -3,8 +3,9 @@ import Header from '../components/header';
 import BackgroundImage from '../components/background-image';
 
 import ChainsGrid from '../components/chains-grid';
+import { chains, speedMarks } from '../lib/settings';
 
-export default function Home() {
+export function Home({ chains, speedMarks}) {
 
   return (
     <>
@@ -30,9 +31,20 @@ export default function Home() {
 
       <main className="grid place-items-center min-h-screen bg-zinc-50/50 dark:bg-zinc-900/50">
         <Header />
-        <ChainsGrid />
+        <ChainsGrid chains={chains} speedMarks={speedMarks} />
       </main>
 
     </>
   );
 }
+
+export async function getStaticProps() {
+  return {
+    props: {
+      chains,
+      speedMarks,
+    },
+  };
+}
+
+export default Home;
