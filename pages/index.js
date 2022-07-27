@@ -25,6 +25,9 @@ export function Home({ chains, speedMarks}) {
         <meta name="twitter:title" content="GAS GAS GAS" />
         <meta name="twitter:description" content="⛽🚘 EVM chains gas tools" />
         <meta name="twitter:image" content="/images/og.png" />
+
+        <link rel="preload" href="/fonts/RobotoMono-Regular.ttf" as="font" crossOrigin="" type="font/ttf" />
+        <link rel="preload" href="/fonts/RobotoMono-Light.ttf" as="font" crossOrigin="" type="font/ttf" />
       </Head>
 
       <BackgroundImage />
