@@ -1,5 +1,3 @@
-import { speedMarks } from '../../lib/settings';
-
 function TxFee({ speedMark, fee, token, usdValue }) {
 
   return (
