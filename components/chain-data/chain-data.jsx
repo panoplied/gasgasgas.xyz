@@ -5,7 +5,7 @@ import { useChain } from '../../lib/gas-fetcher';
 import { usePrice } from '../../lib/usd-fetcher';
 
 
-function ChainData({ chain, speedMarks }) {
+function ChainData({ chain, speedMarks, customGas }) {
   const { data: gasData } = useChain(chain);
   const { data: usdData } = usePrice(chain);
 
@@ -14,9 +14,9 @@ function ChainData({ chain, speedMarks }) {
       <BlockHeader chain={chain} speedMarks={speedMarks} gasData={gasData} usdData={usdData} />
 
       {/* Here we define gas limit catergories and multipliers */}
-      <Fees chain={chain} title="Standard Transfer" multi={21000}    token={chain.nativeToken} speedMarks={speedMarks} gasData={gasData} usdData={usdData} />
-      <Fees chain={chain} title="Deploy 24kb"       multi={15360000} token={chain.nativeToken} speedMarks={speedMarks} gasData={gasData} usdData={usdData}/>
-      {/* <Fees chain={chain} title="Custom Gas Limit" multi={''} token={chain.nativeToken} speedMarks={speedMarks} gasData={gasData} usdData={usdData} /> */}
+      <Fees chain={chain} title="Standard Transfer" multi={21000}     token={chain.nativeToken} speedMarks={speedMarks} gasData={gasData} usdData={usdData} />
+      <Fees chain={chain} title="Deploy 24kb"       multi={15360000}  token={chain.nativeToken} speedMarks={speedMarks} gasData={gasData} usdData={usdData} />
+      <Fees chain={chain} title="Custom Gas Limit"  multi={customGas} token={chain.nativeToken} speedMarks={speedMarks} gasData={gasData} usdData={usdData} />
 
     </div>
   );
@@ -80,6 +80,7 @@ function BlockHeader({ chain, speedMarks, gasData, usdData }) {
 
 
 function weiToGwei(val) {
+  const v = ethers.BigNumber.from(val);
   return ethers.utils.formatUnits(val.toString(), "gwei");
 }
 

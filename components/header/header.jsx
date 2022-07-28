@@ -1,15 +1,19 @@
 import ThemeToggle from '../theme-toggle';
+import CustomGasForm from '../custom-gas-form';
 
-function Header() {
+function Header({ setCustomGas }) {
 
   return (
     <div className="flex w-full p-4">
+
       <h1 className="text-4xl grow self-center select-none">⛽</h1>
-      {/* TODO: Implement input for custom gas limit */}
-      {/* <input className="grow h-16 justify-self-center"></input> */}
+
+      <CustomGasForm setCustomGas={setCustomGas} />
+
       <div className="grow flex self-center flex-row-reverse">
         <ThemeToggle />
       </div>
+
     </div>
   );
 }
