@@ -2,7 +2,6 @@ function CustomGasForm ({ setCustomGas, customGas }) {
 
 
   function handleCustomGas(value) {
-
     // Don't allow to enter non-numerical and negative values
     if (!isNaN(value) && value >= 0) {
       setCustomGas(value);
@@ -10,7 +9,6 @@ function CustomGasForm ({ setCustomGas, customGas }) {
   }
 
   return (
-    <>
       <input
         placeholder="Custom Gas Limit"
         type="number"
@@ -29,7 +27,6 @@ function CustomGasForm ({ setCustomGas, customGas }) {
           text-2xl
           text-center
           rounded-lg 
-          appearance-none
           appearance-none
 
           bg-zinc-50/50
@@ -70,9 +67,11 @@ function CustomGasForm ({ setCustomGas, customGas }) {
           "
 
         onChange={e => handleCustomGas(e.target.value)} 
+
+        onKeyUp={(e => {e.key === 'Enter' ? e.target.blur() : ''})}
+
         value={customGas}
       />
-    </>
   );
 }
 
