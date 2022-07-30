@@ -36,7 +36,7 @@ export function Home({ chains, speedMarks}) {
       <BackgroundImage />
 
       <main className="grid place-items-center min-h-screen bg-zinc-50/50 dark:bg-zinc-900/50">
-        <Header setCustomGas={setCustomGas}/>
+        <Header setCustomGas={setCustomGas} customGas={customGas} />
         <ChainsGrid chains={chains} speedMarks={speedMarks} customGas={customGas} />
       </main>
 
