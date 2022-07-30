@@ -29,6 +29,8 @@ function CustomGasForm ({ setCustomGas, customGas }) {
           text-2xl
           text-center
           rounded-lg 
+          appearance-none
+          appearance-none
 
           bg-zinc-50/50
           placeholder-zinc-500
@@ -62,7 +64,8 @@ function CustomGasForm ({ setCustomGas, customGas }) {
 
           dark:selection:text-zinc-900
 
-          outline-0
+          outline-none
+          focus:outline-none
           backdrop-blur-md
           "
 
