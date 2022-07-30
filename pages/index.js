@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Head from 'next/head';
 import Header from '../components/header';
 import BackgroundImage from '../components/background-image';
@@ -6,6 +7,8 @@ import ChainsGrid from '../components/chains-grid';
 import { chains, speedMarks } from '../lib/settings';
 
 export function Home({ chains, speedMarks}) {
+
+  const [ customGas, setCustomGas ] = useState('');
 
   return (
     <>
@@ -33,8 +36,8 @@ export function Home({ chains, speedMarks}) {
       <BackgroundImage />
 
       <main className="grid place-items-center min-h-screen bg-zinc-50/50 dark:bg-zinc-900/50">
-        <Header />
-        <ChainsGrid chains={chains} speedMarks={speedMarks} />
+        <Header setCustomGas={setCustomGas} customGas={customGas} />
+        <ChainsGrid chains={chains} speedMarks={speedMarks} customGas={customGas} />
       </main>
 
     </>
