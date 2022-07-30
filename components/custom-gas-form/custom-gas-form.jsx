@@ -2,8 +2,8 @@ function CustomGasForm ({ setCustomGas, customGas }) {
 
 
   function handleCustomGas(value) {
-    // Don't allow to enter non-numerical and negative values
-    if (!isNaN(value) && value >= 0) {
+    // Don't allow non-numerical and negative values, also check for 8 digit limit
+    if (!isNaN(value) && value >= 0 && value.length <= 8) {
       setCustomGas(value);
     }
   }
