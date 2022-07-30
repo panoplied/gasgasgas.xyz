@@ -13,7 +13,7 @@ function CustomGasForm ({ setCustomGas, customGas }) {
     <>
       <input
         placeholder="Custom Gas Limit"
-        // type="number"
+        type="number"
         maxLength={8}
         className="
           grow
