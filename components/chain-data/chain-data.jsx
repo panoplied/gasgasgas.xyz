@@ -6,8 +6,8 @@ import { usePrice } from '../../lib/usd-fetcher';
 
 
 function ChainData({ chain, speedMarks, customGas }) {
-  const { data: gasData } = useChain(chain);
-  const { data: usdData } = usePrice(chain);
+  let { data: gasData } = useChain(chain);
+  let { data: usdData } = usePrice(chain);
 
   return (
     <div className="grid rounded-lg text-zinc-900 dark:text-zinc-50 bg-zinc-50/70 dark:bg-zinc-900/70 backdrop-blur-md">
@@ -28,11 +28,15 @@ function Fees({ chain, title, multi, token, speedMarks, gasData, usdData }) {
 
   let feeSlow, feeNormal, feeFast, usdValue;
 
-  if (gasData && usdData && multi) {
+  // `gasData instanceof Array` is a hacky way of checking if we really got
+  // proper gas prices array from API and not an object with "too many requests" message
+  // TODO: refactor this hotfix 
+
+  if (gasData instanceof Array && usdData && multi) {
     [feeSlow, feeNormal, feeFast] = [
-      gasData.data.slow.price,
-      gasData.data.normal.price,
-      gasData.data.fast.price
+      gasData[0].price,
+      gasData[1].price,
+      gasData[2].price
     ].map(f => weiToEth(f * multi));
 
     usdValue = usdData[chain.usdSymbol].usd;
@@ -68,10 +72,13 @@ function BlockHeader({ chain, speedMarks, gasData, usdData }) {
       </div>
 
       {/* Gas Values */}
+      {/* `gasData instanceof Array` is a hacky way of checking if we really got
+        * proper gas prices array from API and not an object with "too many requests" message
+        * TODO: refactor this hotfix  */}
       <div className="flex flex-nowrap font-bold p-4 text-2xl font-robotoMonoLight">
-        <p className="grow text-sky-500 text-left">{speedMarks.slow}       {gasData ? weiToGwei(gasData.data.slow.price)   : "--"}</p>
-        <p className="grow text-green-500 text-center">{speedMarks.normal} {gasData ? weiToGwei(gasData.data.normal.price) : "--"}</p>
-        <p className="grow text-rose-500 text-right">{speedMarks.fast}     {gasData ? weiToGwei(gasData.data.fast.price)   : "--"}</p>
+        <p className="grow text-sky-500 text-left">{speedMarks.slow}       {gasData instanceof Array ? weiToGwei(gasData[0].price) : "--"}</p>
+        <p className="grow text-green-500 text-center">{speedMarks.normal} {gasData instanceof Array ? weiToGwei(gasData[1].price) : "--"}</p>
+        <p className="grow text-rose-500 text-right">{speedMarks.fast}     {gasData instanceof Array ? weiToGwei(gasData[2].price) : "--"}</p>
       </div>
 
     </>
@@ -80,7 +87,6 @@ function BlockHeader({ chain, speedMarks, gasData, usdData }) {
 
 
 function weiToGwei(val) {
-  const v = ethers.BigNumber.from(val);
   return ethers.utils.formatUnits(val.toString(), "gwei");
 }
 
