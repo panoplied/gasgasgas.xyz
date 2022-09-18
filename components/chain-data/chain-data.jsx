@@ -20,7 +20,7 @@ function ChainData({ chain, speedMarks, customGas }) {
     setTimeout(() => {
       setShouldFetch(true);
       console.log(`DEBUG: ${chain.name} initialized`);
-    }, Math.floor(Math.random() * 5000) + 1000);
+    }, Math.floor(Math.random() * 10000));
   }, []);
 
 
@@ -99,9 +99,9 @@ function BlockHeader({ chain, speedMarks, gasData, usdData }) {
         * proper gas prices array from API and not an object with "too many requests" message
         * TODO: refactor this hotfix  */}
       <div className="flex flex-nowrap font-bold p-4 text-2xl font-robotoMonoLight">
-        <p className="grow text-sky-500 text-left">{speedMarks.slow}       {gasData instanceof Array ? weiToGwei(gasData[0].price) : <span className="text-zinc-900 dark:text-zinc-50 opacity-50"><ASCIIAnimation frames={loadingAnim} rate={100} /></span>}</p>
-        <p className="grow text-green-500 text-center">{speedMarks.normal} {gasData instanceof Array ? weiToGwei(gasData[1].price) : <span className="text-zinc-900 dark:text-zinc-50 opacity-50"><ASCIIAnimation frames={loadingAnim} rate={100} /></span>}</p>
-        <p className="grow text-rose-500 text-right">{speedMarks.fast}     {gasData instanceof Array ? weiToGwei(gasData[2].price) : <span className="text-zinc-900 dark:text-zinc-50 opacity-50"><ASCIIAnimation frames={loadingAnim} rate={100} /></span>}</p>
+        <p className="grow text-sky-500 text-left">{speedMarks.slow}       {gasData instanceof Array ? weiToGwei(gasData[0].price) : <span className="text-zinc-900 dark:text-zinc-50 font-normal opacity-50"><ASCIIAnimation frames={loadingAnim} rate={100} /></span>}</p>
+        <p className="grow text-green-500 text-center">{speedMarks.normal} {gasData instanceof Array ? weiToGwei(gasData[1].price) : <span className="text-zinc-900 dark:text-zinc-50 font-normal opacity-50"><ASCIIAnimation frames={loadingAnim} rate={100} /></span>}</p>
+        <p className="grow text-rose-500 text-right">{speedMarks.fast}     {gasData instanceof Array ? weiToGwei(gasData[2].price) : <span className="text-zinc-900 dark:text-zinc-50 font-normal opacity-50"><ASCIIAnimation frames={loadingAnim} rate={100} /></span>}</p>
       </div>
 
     </>
