@@ -3,20 +3,35 @@ import Image from 'next/image';
 import TxFee from '../tx-fee';
 import { useChain } from '../../lib/gas-fetcher';
 import { usePrice } from '../../lib/usd-fetcher';
+import { useState, useEffect } from 'react';
+import ASCIIAnimation from '../ascii-animation';
+
+// const loadingAnim = ['◴','◷','◶','◵',];
+const loadingAnim = ['⣷','⣯','⣟','⡿','⢿','⣻','⣽','⣾',];
 
 
 function ChainData({ chain, speedMarks, customGas }) {
-  let { data: gasData } = useChain(chain);
-  let { data: usdData } = usePrice(chain);
+  const [ shouldFetch, setShouldFetch ] = useState(false);
+
+  const { data: gasData } = useChain(chain, shouldFetch);
+  const { data: usdData } = usePrice(chain);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShouldFetch(true);
+      console.log(`DEBUG: ${chain.name} initialized`);
+    }, Math.floor(Math.random() * 5000) + 1000);
+  }, []);
+
 
   return (
     <div className="grid rounded-lg text-zinc-900 dark:text-zinc-50 bg-zinc-50/70 dark:bg-zinc-900/70 backdrop-blur-md">
       <BlockHeader chain={chain} speedMarks={speedMarks} gasData={gasData} usdData={usdData} />
 
       {/* Here we define gas limit catergories and multipliers */}
-      <Fees chain={chain} title="Standard Transfer" multi={21000}     token={chain.nativeToken} speedMarks={speedMarks} gasData={gasData} usdData={usdData} />
-      <Fees chain={chain} title="Deploy 24kb"       multi={15360000}  token={chain.nativeToken} speedMarks={speedMarks} gasData={gasData} usdData={usdData} />
-      <Fees chain={chain} title="Custom Gas Limit"  multi={customGas} token={chain.nativeToken} speedMarks={speedMarks} gasData={gasData} usdData={usdData} />
+      <Fees chain={chain} title="Standard Transfer" multi={21000}     token={chain.nativeToken} speedMarks={speedMarks} gasData={gasData} usdData={usdData} placeholder='animated' />
+      <Fees chain={chain} title="Deploy 24kb"       multi={15360000}  token={chain.nativeToken} speedMarks={speedMarks} gasData={gasData} usdData={usdData} placeholder='animated' />
+      <Fees chain={chain} title="Custom Gas Limit"  multi={customGas} token={chain.nativeToken} speedMarks={speedMarks} gasData={gasData} usdData={usdData} placeholder='static' />
 
     </div>
   );
@@ -24,7 +39,7 @@ function ChainData({ chain, speedMarks, customGas }) {
 }
 
 
-function Fees({ chain, title, multi, token, speedMarks, gasData, usdData }) {
+function Fees({ chain, title, multi, token, speedMarks, gasData, usdData, placeholder }) {
 
   let feeSlow, feeNormal, feeFast, usdValue;
 
@@ -42,12 +57,20 @@ function Fees({ chain, title, multi, token, speedMarks, gasData, usdData }) {
     usdValue = usdData[chain.usdSymbol].usd;
   }
 
+  let emptyValue;
+  if (placeholder === 'static') {
+    emptyValue = '--/--';
+  }
+  if (placeholder === 'animated') {
+    emptyValue = <span style={{opacity: 0.5}}><ASCIIAnimation frames={loadingAnim} rate={100} /></span>
+  }
+
   return (
     <div className="p-4">
       <p className="font-bold font-robotoMonoLight py-1">{title}</p>
-      <TxFee speedMark={speedMarks.slow}   fee={feeSlow}   token={token} usdValue={usdValue}/>
-      <TxFee speedMark={speedMarks.normal} fee={feeNormal} token={token} usdValue={usdValue} />
-      <TxFee speedMark={speedMarks.fast}   fee={feeFast}   token={token} usdValue={usdValue} />
+      <TxFee speedMark={speedMarks.slow}   fee={feeSlow}   token={token} usdValue={usdValue} emptyValue={emptyValue} />
+      <TxFee speedMark={speedMarks.normal} fee={feeNormal} token={token} usdValue={usdValue} emptyValue={emptyValue} />
+      <TxFee speedMark={speedMarks.fast}   fee={feeFast}   token={token} usdValue={usdValue} emptyValue={emptyValue} />
     </div>
   );
 }
@@ -76,9 +99,9 @@ function BlockHeader({ chain, speedMarks, gasData, usdData }) {
         * proper gas prices array from API and not an object with "too many requests" message
         * TODO: refactor this hotfix  */}
       <div className="flex flex-nowrap font-bold p-4 text-2xl font-robotoMonoLight">
-        <p className="grow text-sky-500 text-left">{speedMarks.slow}       {gasData instanceof Array ? weiToGwei(gasData[0].price) : "--"}</p>
-        <p className="grow text-green-500 text-center">{speedMarks.normal} {gasData instanceof Array ? weiToGwei(gasData[1].price) : "--"}</p>
-        <p className="grow text-rose-500 text-right">{speedMarks.fast}     {gasData instanceof Array ? weiToGwei(gasData[2].price) : "--"}</p>
+        <p className="grow text-sky-500 text-left">{speedMarks.slow}       {gasData instanceof Array ? weiToGwei(gasData[0].price) : <span style={{opacity: 0.5}}><ASCIIAnimation frames={loadingAnim} rate={100} /></span>}</p>
+        <p className="grow text-green-500 text-center">{speedMarks.normal} {gasData instanceof Array ? weiToGwei(gasData[1].price) : <span style={{opacity: 0.5}}><ASCIIAnimation frames={loadingAnim} rate={100} /></span>}</p>
+        <p className="grow text-rose-500 text-right">{speedMarks.fast}     {gasData instanceof Array ? weiToGwei(gasData[2].price) : <span style={{opacity: 0.5}}><ASCIIAnimation frames={loadingAnim} rate={100} /></span>}</p>
       </div>
 
     </>
