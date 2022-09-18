@@ -7,7 +7,7 @@ function ASCIIAnimation({ frames, rate }) {
   const [currentFrameNum, setCurrentFrameNum] = useState(0);
 
   useEffect(() => {
-    const timer = setIntervale(() => {
+    const timer = setInterval(() => {
       if (currentFrameNum < animationLength) {
         setCurrentFrameNum(currentFrameNum + 1);
       } else {
