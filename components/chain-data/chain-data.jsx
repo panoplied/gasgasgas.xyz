@@ -37,8 +37,6 @@ function ChainData({ chain, chainIndex, speedMarks, customGas }) {
     }
   }, [gasData, usdData]);
 
-  console.log(chain.id, fees);
-    
   return (
     <div className="grid rounded-lg text-zinc-900 dark:text-zinc-50 bg-zinc-50/70 dark:bg-zinc-900/70 backdrop-blur-md">
       <BlockHeader chain={chain} speedMarks={speedMarks} fees={fees} usd={usd} />
