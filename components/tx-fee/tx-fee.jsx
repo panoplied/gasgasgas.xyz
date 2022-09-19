@@ -7,7 +7,7 @@ function TxFee({ speedMark, fee, multi, token, usd, emptyValue }) {
   let txPrice = null; 
 
   if (fee && multi) {
-    txPrice = truncate(weiToEth(fee * multi));
+    txPrice = weiToEth(fee * multi);
   }
 
   return (
@@ -16,13 +16,13 @@ function TxFee({ speedMark, fee, multi, token, usd, emptyValue }) {
       {/* Native Token TX Price */}
       <p className="grow">
         {speedMark}{' '}
-        {txPrice ? txPrice : emptyValue}
+        {txPrice ? truncate(txPrice) : emptyValue}
         {' '}{token}
       </p>
 
       {/* USD TX Price */}
       <p>
-        ${(txPrice && usd) ? (txPrice * usd) : emptyValue}
+        ${(txPrice && usd) ? truncate(txPrice * usd) : emptyValue}
       </p>
 
     </div>
