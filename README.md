@@ -1,4 +1,4 @@
-# GAS GAS GAS
+# ⛽ GAS GAS GAS
 
 https://gasgasgas.xyz/
 
